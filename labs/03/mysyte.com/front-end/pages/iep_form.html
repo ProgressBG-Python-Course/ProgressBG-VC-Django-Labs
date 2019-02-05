@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Demo</title>
+  <link rel="stylesheet" type="text/css" href="../assets/main.css">
+</head>
+<body>
+
+    <label>user name: <input type="text" name="user_name"></label>
+    <label>pass: <input id="pass" type="password" name="user_pass"></label>
+    <button type="submit" onclick="checkUserPass()">Send</button>
+
+  <script type="text/javascript">
+    let body = document.body;
+    let userPass= document.querySelector('#pass');
+    let h1 = document.createElement('h1');
+    h1.innerHTML = 'Welcome';
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    console.dir(userPass)
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
+
+
+    function checkUserPass(){
+      console.log(`Userpass: ${userPass.value}`);
+
+      body.appendChild(h1)
+    }
+  </script>
+</body>
+</html>
