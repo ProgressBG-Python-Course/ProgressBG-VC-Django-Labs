@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>wsgiApp</title>
+  <style>
+    form div{
+      width: 50%;
+      margin: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>wsgiApp index.html</h1>
+  <form method="get" action="/wsgi/get_hobbies.wsgi">
+    <div><label>Age: <input type="text" name="age"></label></div>
+    <div>
+      <fieldset>
+        <legend>Hobbies</legend>
+        <label>Software<input name="hobbies" type="checkbox" value="software"></label>
+        <label>Hardware<input name="hobbies" type="checkbox" value="hardware"></label>
+      </fieldset>
+    </div>
+    <div><button type="submit">Send</button></div>
+  </form>
+</body>
+</html>
