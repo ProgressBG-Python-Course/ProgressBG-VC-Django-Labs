@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TodoappConfig(AppConfig):
-    name = 'ToDoApp'
+    name = 'todo_app'
