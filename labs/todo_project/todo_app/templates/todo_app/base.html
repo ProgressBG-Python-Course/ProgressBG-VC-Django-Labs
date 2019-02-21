@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Latest Tasks</title>
+	<style type="text/css">
+		table{
+			border: 5px dotted red;
+		}
+
+		/*style even rows*/
+		tr:nth-of-type(2n){
+			bacd: #99;
+		}
+		/*style odd rows*/
+		tr:nth-of-type(2n+1){
+			background: #FFF;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Latest Tasks</h1>
+	{% block table_content %}{% endblock %}
+</body>
+</html>

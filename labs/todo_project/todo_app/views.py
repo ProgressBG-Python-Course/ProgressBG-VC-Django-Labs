@@ -5,11 +5,7 @@ from todo_app.models import Task
 
 # Create your views here.
 def index(request):
-    latest_tasks = Task.objects.order_by('due')[:5]
-
-    context = {
-        'latest_tasks': latest_tasks
-    }
+   	
 
     template_file = 'todo_app/index.html'
 
@@ -25,6 +21,18 @@ def list(request):
     }
 
     template_file = 'todo_app/list.html'
+
+
+    return render(request, template_file, context)
+
+def table(request):
+    latest_tasks = Task.objects.order_by('due')[:5]
+
+    context = {
+        'latest_tasks': latest_tasks
+    }
+
+    template_file = 'todo_app/table.html'
 
 
     return render(request, template_file, context)
