@@ -9,6 +9,10 @@ def index(request):
 
     template_file = 'todo_app/index.html'
 
+    context = {
+        'page_title': 'Todo App Index'
+    }
+
 
     return render(request, template_file, context)
 
