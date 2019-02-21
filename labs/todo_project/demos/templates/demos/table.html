@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Latest tasks as table</h1>
+    {% if latest_tasks %}
+        <table>
+            <tr><th>Task</th><th>Due date</th></tr>
+            {% for task in latest_tasks %}
+                <tr><td>{{ task.title }}</td><td>{{ task.due | date:"d M Y" }}</td></tr>
+            {% endfor %}
+        </table>       
+    {% else %}
+        <p>No task left</p>
+    {% endif %}
+</body>
+</html>
