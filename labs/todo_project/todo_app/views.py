@@ -15,3 +15,16 @@ def index(request):
 
 
     return render(request, template_file, context)
+
+# http://127.0.0.1:8000/list
+def list(request):
+    latest_tasks = Task.objects.order_by('due')[:5]
+
+    context = {
+        'latest_tasks': latest_tasks
+    }
+
+    template_file = 'todo_app/list.html'
+
+
+    return render(request, template_file, context)

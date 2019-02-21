@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style type="text/css">
+        /*ul,ol{
+            border: 5px solid red;
+        }
+        li{
+            border: 2px solid blue;
+        }*/
+    </style>
+</head>
+<body>
+    <h2>Current Todos</h2>
+
+    <ol>
+        <!-- <li><em>Task1 Tile</em>, due on: <span>2019-02-19</span></li> -->
+    </ol>
+
+    <!-- latest_tasks -->
+    {% if  latest_tasks %}
+    <ul>
+        {% for task in latest_tasks %}
+            <li><em>{{ task.title }}</em>, due on: <span>{{ task.due }}</span></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

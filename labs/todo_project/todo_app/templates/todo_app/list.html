@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Latest Tasks</title>
+</head>
+<body>
+	<h1>Latest Tasks</h1>
+	<ul>
+		{%  for task in latest_tasks %}
+		<li><span>{{task.title}}</span> - {{task.due}}</li>
+		{% endfor %}	
+	</ul>
+</body>
+</html>
