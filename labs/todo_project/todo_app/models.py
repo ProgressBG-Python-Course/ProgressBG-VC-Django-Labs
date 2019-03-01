@@ -10,5 +10,5 @@ class Task(models.Model):
   end = models.DateTimeField('end date')
 
   def __str__(self):
-    return f"{self.title} - {self.due}"
+    return f"{self.title} - {self.description}"
 

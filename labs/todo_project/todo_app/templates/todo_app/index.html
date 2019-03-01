@@ -3,14 +3,31 @@
 <head>
     <title>{{page_title}}</title>
     <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      .fa-trash{
+        color: #05FFCF;
+      }
+    </style>
 </head>
 <body>
-	<h1>{{page_title}}</h1>
-    <nav>
-        <ul>
-            <li><a href="http://127.0.0.1:8000/todos/list">list</a></li>
-            <li><a href="http://127.0.0.1:8000/todos/table">table</a></li>
-        </ul>
-    </nav>
+	<header>{{page_title}}</header>
+  <main>
+    <div>
+      <input type="text" name="task_title" placeholder="please, enter a task title...">
+      <button>Add</button>
+    </div>
+
+    <div>
+      <ul>
+        {% for task in tasks %}
+          <li>{{task}} <a href="/todos/del/{{task.id}}"><i class="fa fa-trash"></i></a></li>
+        {% endfor %}
+        <li>Task 1</li>
+      </ul>
+    </div>
+
+
+  </main>
 </body>
 </html>

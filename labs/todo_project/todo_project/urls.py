@@ -3,9 +3,8 @@ from django.urls import path,include
 
 
 urlpatterns = [	
-
-    path('', include('todo_app.urls')),
-    path('todos/', include('todo_app.urls')),
-    path('demos/', include('demos.urls')),
-    path('admin/', admin.site.urls),
+  # 127.0.0.1:8000/todos
+  path('todos/', include('todo_app.urls')),
+  path('demos/', include('demos.urls')),
+  path('admin/', admin.site.urls),
 ]

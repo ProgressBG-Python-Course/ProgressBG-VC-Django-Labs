@@ -5,12 +5,18 @@ from . import views
 
 
 urlpatterns = [
-	# http://127.0.0.1:8000/todos/
+	# 127.0.0.1:8000/todoss
 	path('', views.index),
 
 	# http://127.0.0.1:8000/todos/list
-    path('list/', views.list),
+  path('list/', views.list),
 
-    # http://127.0.0.1:8000/todos/table
-    path('table/', views.table),
+  # http://127.0.0.1:8000/todos/table
+  path('table/', views.table),
+
+  # http://127.0.0.1:8000/todos/delete/1
+
+  # TODO:why with "views.delete" 
+  path('delete/', views.delete),
+
 ]
