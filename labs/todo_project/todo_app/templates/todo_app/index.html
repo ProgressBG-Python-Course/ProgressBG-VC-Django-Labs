@@ -20,10 +20,12 @@
 
     <div>
       <ul>
+        {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
         {% for task in tasks %}
-          <li>{{task}} <a href="/todos/del/{{task.id}}"><i class="fa fa-trash"></i></a></li>
+          <li>{{task}}<a href="/todos/delete/{{task.id}}"><i class="fa fa-trash"></i></a></li>
+        {% empty %}
+          <li>No tasks!</li>
         {% endfor %}
-        <li>Task 1</li>
       </ul>
     </div>
 
