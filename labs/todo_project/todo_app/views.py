@@ -44,7 +44,7 @@ def table(request):
 
     return render(request, template_file, context)
 
-def delete(request):
+def delete(request,**kwargs):
     # http://127.0.0.1:8000/todos/del/1
     # http://127.0.0.1:8000/todos/del/2
     # http://127.0.0.1:8000/todos/del/3
@@ -54,4 +54,12 @@ def delete(request):
     # id = 1
     # Task.objects.del(id)
 
+
+    # TODO: error explain
+    return HttpResponse(f"""
+        urlkjkdsks = {kwargs[url_id]}
+    """)
+
     print(request)
+
+# delete({}, id=2)
