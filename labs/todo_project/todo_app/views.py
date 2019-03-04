@@ -50,6 +50,10 @@ def delete(request, **kwargs):
         'page_title': 'Todo App Index'
     }
 
+    # DONE: error explain
+    return HttpResponse(f"""
+        kwargs = {kwargs['url_id']}
+    """)
 
     return render(request, 'todo_app/delete.html', context)
 
