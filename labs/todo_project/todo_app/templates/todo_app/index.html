@@ -1,35 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{page_title}}</title>
-    <!-- <link rel="stylesheet" type="text/css" href=""> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-      .fa-trash{
-        color: #05FFCF;
-      }
-    </style>
-</head>
-<body>
-	<header>{{page_title}}</header>
-  <main>
-    <div>
-      <input type="text" name="task_title" placeholder="please, enter a task title...">
-      <button>Add</button>
-    </div>
+{% extends "todo_app/base.html" %}
 
-    <div>
+{% load static %}
+
+{% block content_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo_app/index.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+{% endblock content_head %}
+
+
+{% block content %}  
+  <main>
+    <section class="add_todo">      
+        <form>
+          <input type="text" name="task_title" placeholder="please, enter a task title...">
+          <button>Add</button>  
+        </form>      
+    </section>    
+    <section class="list_todos">
+      <h1>Current Tasks:</h1>
       <ul>
         {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
         {% for task in tasks %}
-          <li>{{task}}<a href="/todos/delete/{{task.id}}"><i class="fa fa-trash"></i></a></li>
+          <!-- TODO: not going into if -->
+          <p>item_id: {{item_id}}</p>
+          <p>task.id: {{task.id}}</p>
+          <li class="clear">            
+            <span>
+              {% if item_id == task.id %}
+                <p>@@@@@@@@@@</p>
+                <del>{{task.title}}</del>
+              {% else %}
+                {{task.title}}
+              {% endif %}
+            </span>
+            <span>
+              <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a>
+              {# <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a> #}
+              <a href="/todos/edit?id={{task.id}}"><i class="fa fa-pencil"></i></a>
+            </span>                        
+          </li>
         {% empty %}
           <li>No tasks!</li>
         {% endfor %}
       </ul>
-    </div>
-
-
+    </section>
   </main>
-</body>
-</html>
+{% endblock content %}
+

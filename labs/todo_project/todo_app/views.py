@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.template import loader
 from django.http import HttpResponse
 from todo_app.models import Task
@@ -6,13 +6,13 @@ from todo_app.models import Task
 # Create your views here.
 def index(request): 
     tasks = Task.objects.all()
-    print(tasks)
 
     template_file = 'todo_app/index.html'
 
     context = {
         'tasks': tasks,
-        'page_title': 'Todo App Index'
+        'app_name': 'Todo App', 
+        'page_name': 'index'       
     }
 
 
@@ -33,8 +33,6 @@ def list(request):
 def table(request):
     latest_tasks = Task.objects.order_by('due')[:5]
 
-
-
     context = {
         'latest_tasks': latest_tasks
     }
@@ -44,17 +42,42 @@ def table(request):
 
     return render(request, template_file, context)
 
-def delete(request, **kwargs):
+def delete(request, **kwargs):    
+    tasks = Task.objects.all()    
+
+    template_file = 'todo_app/index.html'
+
+
+    if request.method == 'GET':
+        item_id = request.GET['id']        
+    else:
+        item_id = kwargs['id']
+
     context = {
-        'kwargs': kwargs,
-        'page_title': 'Todo App Index'
+        'tasks': tasks,
+        'app_name': 'Todo App', 
+        'page_name': 'delete',      
+        'item_id': item_id     
     }
 
-    # DONE: error explain
-    return HttpResponse(f"""
-        kwargs = {kwargs['url_id']}
-    """)
+        
+    return render(request, template_file, context)
 
-    return render(request, 'todo_app/delete.html', context)
+def edit(request, **kwargs):
+    item_id = kwargs['id']
+
+    tasks = Task.objects.all()
+
+    template_file = 'todo_app/edit.html'
+
+    context = {
+        'tasks': tasks,
+        'app_name': 'Todo App', 
+        'page_name': 'edit',      
+        'item_id': item_id     
+    }
+
+        
+    return render(request, template_file, context)
 
 # delete({}, id=2)

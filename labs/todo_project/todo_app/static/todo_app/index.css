@@ -1,0 +1,77 @@
+
+.add_todo{        
+  height: 3em;
+  margin: 10vh 0 5vh 0;
+}
+.add_todo form{
+  position: relative;
+  display: block;
+  height: 100%;
+}
+.add_todo input{
+  display: inline-block;
+  position: absolute;
+  top:0; left: 0;
+  width: 80%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;        
+}
+.add_todo button{
+  display: inline-block;
+  position: absolute;
+  top:0; right: 0;
+  height: 100%;
+  width: 20%;
+} 
+
+.list_todos h1{
+  font-size: 1.5em;
+  padding: 0 0 .5em 0;
+}
+.list_todos ul{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+}
+.list_todos li{ 
+  font-size: 1.1em;       
+  height: 3em;
+  line-height: 3em;
+  padding: 0 .5em 0 1em; 
+  background: #666; 
+  border-bottom: 1px dotted #999; 
+}  
+.list_todos li:hover{
+  background: #888;
+}    
+.list_todos li:nth-of-type(2n+1){
+  color: #fe9c8f;
+}
+.list_todos li:nth-of-type(2n){
+  color: #f9caa7;
+}
+.list_todos li span{
+  display: inline-block;   
+  height: 100%;
+}
+.list_todos li span:nth-of-type(2){            
+  float: right;        
+} 
+.list_todos li a{
+  display: inline-block;
+  height: 2em;
+  color: inherit;
+  opacity: .5;
+} 
+.list_todos li a:hover{
+  opacity: 1;
+}
+.list_todos li .fa{
+  display: inline-block;
+  width: 2em;
+  height: 100%;
+  
+  text-align: right;
+}               

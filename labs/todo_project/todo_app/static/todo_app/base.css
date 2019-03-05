@@ -1,0 +1,50 @@
+/*common rules*/
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.clear:after{
+  display: block;
+  content: "";
+  clear: both;
+}
+.rotate-180{
+  display: inline-block;
+  transform: rotate(180deg);  
+}
+
+/*layout*/
+body{
+  margin:0;
+  background: #efefef;
+}
+header, footer{
+  vertical-align: middle;
+  text-align: center;
+  background: #666;
+  color: #EEE;
+  /*font-size: 2em;*/
+}        
+header{
+  height: 15vh;
+  /*prevent vertical margin collapse*/
+  border: 1px solid #666;
+}   
+header h1{  
+  margin: .5em 0 .3em 0;
+}
+footer{
+  height: 10vh;
+  line-height: 10vh;
+  font-size: initial;      
+}
+main{  
+  width: 80%;
+  min-height: 75vh;
+  margin:0 auto;  
+  /*to prevent margin collapse*/
+  padding: 1px 0;  
+
+  color: #666;
+}
