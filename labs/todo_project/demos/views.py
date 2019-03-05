@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from django.template import loader
-# from django.http import HttpResponse
+from django.http import HttpResponse
 from todo_app.models import Task
 
 # Create your views here.
@@ -41,3 +41,31 @@ def task(request, id):
 
 
     return render(request, template_file, context)
+
+
+
+def user(request,*args, **kwargs):
+    # http://127.0.0.1:8000/demos/user/name/surname
+    # http://127.0.0.1:8000/demos/user/user_id
+    # => Hello <user name>
+
+    # name = 'ivan'
+    # surname = 'ivanov'
+
+    # http://127.0.0.1:8000/demos/user/1
+    # id=1
+
+
+    'ivan/ivanov'
+    users = {
+        '1':{
+            'name': 'ivan',
+            'surname':'ivanov'
+        }
+    }
+
+    return HttpResponse(f"""
+        args: {args}<br>
+        kwargs: {kwargs}<br>
+        
+    """)
