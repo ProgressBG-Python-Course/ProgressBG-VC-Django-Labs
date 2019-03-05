@@ -15,24 +15,28 @@
           <input type="text" name="task_title" placeholder="please, enter a task title...">
           <button>Add</button>  
         </form>      
-    </section>
-
+    </section>    
     <section class="list_todos">
       <h1>Current Tasks:</h1>
       <ul>
         {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
         {% for task in tasks %}
-          <li class="clear">
+          <!-- TODO: not going into if -->
+          <p>item_id: {{item_id}}</p>
+          <p>task.id: {{task.id}}</p>
+          <li class="clear">            
             <span>
               {% if item_id == task.id %}
+                <p>@@@@@@@@@@</p>
                 <del>{{task.title}}</del>
               {% else %}
                 {{task.title}}
               {% endif %}
             </span>
             <span>
-              <a href="/todos/delete/{{task.id}}"><i class="fa fa-trash"></i></a>
-              <a href="/todos/edit/{{task.id}}"><i class="fa fa-pencil"></i></a>
+              <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a>
+              {# <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a> #}
+              <a href="/todos/edit?id={{task.id}}"><i class="fa fa-pencil"></i></a>
             </span>                        
           </li>
         {% empty %}

@@ -42,12 +42,16 @@ def table(request):
 
     return render(request, template_file, context)
 
-def delete(request, **kwargs):
-    item_id = kwargs['id']
-
-    tasks = Task.objects.all()
+def delete(request, **kwargs):    
+    tasks = Task.objects.all()    
 
     template_file = 'todo_app/index.html'
+
+
+    if request.method == 'GET':
+        item_id = request.GET['id']        
+    else:
+        item_id = kwargs['id']
 
     context = {
         'tasks': tasks,

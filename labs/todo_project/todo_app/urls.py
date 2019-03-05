@@ -14,8 +14,9 @@ urlpatterns = [
   # http://127.0.0.1:8000/todos/table
   # path('table/', views.table),
 
-  # http://127.0.0.1:8000/todos/delete/2018 
-  path('delete/<int:id>', views.delete),
+  # http://127.0.0.1:8000/todos/delete?id=1
+  path('delete', views.delete, name="delete"),
+  path('delete/<int:id>', views.delete, name="delete"),
   path('edit/<int:id>', views.edit, name="edit"),
 
 ]
