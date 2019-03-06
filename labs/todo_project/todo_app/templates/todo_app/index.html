@@ -1,6 +1,7 @@
 {% extends "todo_app/base.html" %}
 
 {% load static %}
+{% load custom_filters %}
 
 {% block content_head %}
   <link rel="stylesheet" type="text/css" href="{% static 'todo_app/index.css' %}">
@@ -21,22 +22,30 @@
       <ul>
         {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
         {% for task in tasks %}
-          <!-- TODO: not going into if -->
-          <p>item_id: {{item_id}}</p>
-          <p>task.id: {{task.id}}</p>
+          <!-- 
+            TODO: not going into if 
+            DONE: int(item_id) in view. Example of custom filter, as well 
+          -->                  
+          <p>item_id: {{item_id | typeof }}</p>
+          <p>task.id: {{task.id | typeof }}</p>
           <li class="clear">            
             <span>
               {% if item_id == task.id %}
-                <p>@@@@@@@@@@</p>
+                {# <p>@@@@@@@@@@</p> #}
                 <del>{{task.title}}</del>
               {% else %}
                 {{task.title}}
               {% endif %}
             </span>
             <span>
-              <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a>
-              {# <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a> #}
-              <a href="/todos/edit?id={{task.id}}"><i class="fa fa-pencil"></i></a>
+              {# hardcoded URL and query string - not good #}
+              {# <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a> #}
+              {# <a href="/todos/edit/{{task.id}}"><i class="fa fa-pencil"></i></a> #}
+
+              {# URL and query string with url tag - good #}
+              <a href="{% url 'delete' %}?id={{task.id}}"><i class="fa fa-trash"></i></a>
+              {# URL with url tag - good #}
+              <a href="{% url 'edit' task.id %}"><i class="fa fa-pencil"></i></a>
             </span>                        
           </li>
         {% empty %}

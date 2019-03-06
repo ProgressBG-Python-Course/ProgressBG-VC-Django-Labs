@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from todo_app.models import Task
 
+
 # Create your views here.
 def index(request): 
     tasks = Task.objects.all()
@@ -56,8 +57,9 @@ def delete(request, **kwargs):
     context = {
         'tasks': tasks,
         'app_name': 'Todo App', 
-        'page_name': 'delete',      
-        'item_id': item_id     
+        'page_name': 'delete', 
+        # TODO_DONE     
+        'item_id': int(item_id)     
     }
 
         

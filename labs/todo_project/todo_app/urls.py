@@ -1,14 +1,11 @@
 from django.urls import path
-
-
 from . import views
 
-
 urlpatterns = [
-	# 127.0.0.1:8000/todoss
-	path('', views.index, name="index"),
+  # 127.0.0.1:8000/todoss
+  path('', views.index, name="index"),
 
-	# http://127.0.0.1:8000/todos/list
+  # http://127.0.0.1:8000/todos/list
   # path('list/', views.list),
 
   # http://127.0.0.1:8000/todos/table
