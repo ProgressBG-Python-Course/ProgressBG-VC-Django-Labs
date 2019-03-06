@@ -26,7 +26,8 @@ urlpatterns = [
     # http://127.0.0.1:8000/demos/user/ivan
     # http://127.0.0.1:8000/demos/user/1
     
-    # TODO: give examples with capturing groups with pure Python regex
+    # DONE: give examples with capturing groups with pure Python regex
+    # => 'pure_python_regex_simple.py'
     re_path('user/((?P<user_name>[A-Za-z]+)|(?P<id>\d+))$', views.user),       
     
 ]
