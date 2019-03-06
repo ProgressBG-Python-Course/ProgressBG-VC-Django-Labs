@@ -21,17 +21,10 @@
       <h1>Current Tasks:</h1>
       <ul>
         {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
-        {% for task in tasks %}
-          <!-- 
-            TODO: not going into if 
-            DONE: int(item_id) in view. Example of custom filter, as well 
-          -->                  
-          <p>item_id: {{item_id | typeof }}</p>
-          <p>task.id: {{task.id | typeof }}</p>
+        {% for task in tasks %}                                       
           <li class="clear">            
             <span>
               {% if item_id == task.id %}
-                {# <p>@@@@@@@@@@</p> #}
                 <del>{{task.title}}</del>
               {% else %}
                 {{task.title}}

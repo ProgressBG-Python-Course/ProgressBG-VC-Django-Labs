@@ -1,12 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-  <p>The kwargs params dict: {{kwargs}}</p>  
-  {% for arg,val in kwargs.items %}
-    {{arg}} - {{val}}
-  {% endfor %}
-</body>
-</html>
+{% extends "todo_app/base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block content_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo_app/index.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+{% endblock content_head %}
+
+
+{% block content %}  
+  <main>
+    <section class="add_todo">      
+        <form>
+          <input type="text" name="task_title" placeholder="please, enter a task title...">
+          <button>Add</button>  
+        </form>      
+    </section>    
+    <section class="list_todos">
+      <h1>Current Tasks:</h1>
+      <ul>
+        {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
+        {% for task in tasks %}                                       
+          <li class="clear">            
+            <span>
+              {% if item_id == task.id %}
+                <del>{{task.title}}</del>
+              {% else %}
+                {{task.title}}
+              {% endif %}
+            </span>
+            <span>
+              {# hardcoded URL and query string - not good #}
+              {# <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a> #}
+              {# <a href="/todos/edit/{{task.id}}"><i class="fa fa-pencil"></i></a> #}
+
+              {# URL and query string with url tag - good #}
+              <a href="{% url 'delete' %}?id={{task.id}}"><i class="fa fa-trash"></i></a>
+              {# URL with url tag - good #}
+              <a href="{% url 'edit' task.id %}"><i class="fa fa-pencil"></i></a>
+            </span>                        
+          </li>
+        {% empty %}
+          <li>No tasks!</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+{% endblock content %}
+
