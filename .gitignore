@@ -186,3 +186,4 @@ db.sqlite3
 !.gitignore
 ___*
 *.sublime-workspace
+**/students/**
