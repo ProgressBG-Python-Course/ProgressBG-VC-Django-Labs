@@ -1,0 +1,7 @@
+label{
+  display: flex;
+  margin: .2em 0;
+}
+label>input{
+  display: flex;
+}

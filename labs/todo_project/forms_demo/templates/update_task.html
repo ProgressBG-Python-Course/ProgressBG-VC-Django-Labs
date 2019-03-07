@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <p>Task: {{ task }}</p>
+  <ul>
+    <li>{{ task.title }}</li>
+    <li>{{ task.description }}</li>
+    <li>{{ task.created | date:'Y-m-d' }}</li>
+    <li>{{ task.due | date:'Y-m-d'}}</li>
+  </ul>
+  <form action="/forms_demo/create_task">
+    <label>title: <input type="text" name="title" value="{{ task.title }}"></label>
+    <label>description: <input type="text" name="description" value="{{ task.description }}"></label>
+    <label>created: <input type="date" name="created" value="{{ task.created | date:'Y-m-d'}}"></label>
+    <label>due: <input type="date" name="due" value="{{ task.due | date:'Y-m-d' }}"></label>
+    <input type="hidden" name="id" value="{{ task.id }}">
+    <button>Update</button>
+  </form>
+{% endblock content %}

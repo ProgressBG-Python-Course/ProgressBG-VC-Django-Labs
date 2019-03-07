@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <form action="create_task">
+    <label>title: <input type="text" name="title"></label>
+    <label>description: <input type="text" name="description"></label>
+    <label>created: <input type="date" name="created"></label>
+    <label>due: <input type="date" name="due"></label>
+    <button>Create</button>
+  </form>
+{% endblock content %}
