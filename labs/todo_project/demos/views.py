@@ -42,8 +42,6 @@ def task(request, id):
 
     return render(request, template_file, context)
 
-
-
 def user(request,*args, **kwargs):
     # http://127.0.0.1:8000/demos/user/name/surname
     # http://127.0.0.1:8000/demos/user/user_id
@@ -69,3 +67,13 @@ def user(request,*args, **kwargs):
         kwargs: {kwargs}<br>
         
     """)
+
+def form(request):
+    # http://127.0.0.1:8000/demos/form = show form to submit
+
+    return render(request, 'demos/form.html', {})
+
+def form_process(request):
+    user_name = request.GET['user_name']
+
+    return HttpResponse(f'Hello {user_name}')

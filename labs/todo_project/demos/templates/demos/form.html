@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form demo</title>
+</head>
+<body>
+  <h1>Form demo</h1>
+
+
+  <form action="form_process" method="POST">
+    <div>Име: <input type="text" name='user_name'></div>
+    <div>Парола: <input type="password" name="pass"></div>
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <form action="/test" method="POST">
+  <fieldset>
+    <legend>Gender</legend>
+    <label>male: <input type="radio" name="gender" value="male"></label>
+    <label>female: <input type="radio" name="gender" value="female"></label>
+    <label>other: <input type="radio" name="gender" value="other"></label>
+  </fieldset>
+
+  <input type="submit" name="">
+</form>
+</body>
+</html>
