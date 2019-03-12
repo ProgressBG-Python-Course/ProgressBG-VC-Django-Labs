@@ -4,8 +4,10 @@
 {% block content %}
   <section>
     <h1>Add task</h1>
-    <form action="create_task">
+    <form action="create_task" method="POST">
+      {% csrf_token %}
       <label><input type="text" name="title" placeholder="add task title..."></label>
+      <label><input type="date" name="due" placeholder="add task title..."></label>
       <button>Add</button>
     </form>
   </section>
@@ -13,7 +15,7 @@
     <h1>Tasks</h1>
     <ul>
       {% for task in tasks %}
-        <li>{{ task.title }} 
+        <li><strong>{{ task.title }}</strong>,<em> due on {{ task.due | date:'d.m.Y' }}</em> 
           <a href="{% url 'delete_task' task.id %}">del</a>
           <a href="{% url 'update_task' task.id %}">update</a>
         </li>

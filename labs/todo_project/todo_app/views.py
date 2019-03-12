@@ -36,26 +36,8 @@ def add(request):
     else:
         return HttpResponse(f'Unknown method {request.method} ') 
 
-    
-    # tasks = Task.objects.all()
 
-    # template_file = 'todo_app/index.html'
-
-    # context = {
-    #     'tasks': tasks,
-    #     'app_name': 'Todo App', 
-    #     'page_name': 'index'       
-    # }
-
-
-    # return render(request, template_file, context)
-
-def delete(request, id, **kwargs):       
-    # if request.method == 'GET':
-    #     item_id = request.GET['id']        
-    # else:
-    #     item_id = kwargs['id'] 
-      
+def delete(request, id, **kwargs):          
 
     Task.objects.filter(id=id).delete()
 
@@ -63,7 +45,11 @@ def delete(request, id, **kwargs):
 
 def complete(request, id): 
     task = Task.objects.get(id=id)
-    task.completed = True
+    if task.completed:
+        task.completed = False
+    else:
+        task.completed = True
+
     task.save()
 
     return redirect('index')

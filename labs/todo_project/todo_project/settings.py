@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'todo_app',
     'demos',
-    'forms_demo',
+    'html_forms_demo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
