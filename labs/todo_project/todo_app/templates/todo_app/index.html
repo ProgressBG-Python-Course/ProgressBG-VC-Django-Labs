@@ -25,13 +25,14 @@
         {% for task in tasks %}                                       
           <li class="clear">            
             <span>
-              {% if item_id == task.id %}
+              {% if task.completed %}
                 <del>{{task.title}}</del>
               {% else %}
                 {{task.title}}
               {% endif %}
             </span>
             <span>             
+              <a href="{% url 'complete' task.id%}"><i class="fa fa-check"></i></a>
               <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a>
               <a href="{% url 'edit' task.id %}"><i class="fa fa-pencil"></i></a>
             </span>                        

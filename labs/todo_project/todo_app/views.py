@@ -26,7 +26,11 @@ def index(request):
 def add(request): 
     # all processing should happen only when the request method is POST
     if request.method == 'POST':
-        return HttpResponse('OK, a post was send to add/')
+        new_task = Task(title=request.POST['task_title'])
+        new_task.save()
+
+        return redirect('index')
+
     elif request.method == 'GET':
         return HttpResponse('Error: GET method is not allowed for /add')
     else:
@@ -54,6 +58,13 @@ def delete(request, id, **kwargs):
       
 
     Task.objects.filter(id=id).delete()
+
+    return redirect('index')
+
+def complete(request, id): 
+    task = Task.objects.get(id=id)
+    task.completed = True
+    task.save()
 
     return redirect('index')
 

@@ -15,6 +15,6 @@ urlpatterns = [
   path('delete/<int:id>', views.delete, name="delete"),
 
   # /todos/complete/1 => set as complete the task with given id
-  path('edit/<int:id>', views.edit, name="edit"),
+  path('complete/<int:id>', views.complete, name="complete"),
 
 ]
