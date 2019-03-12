@@ -4,9 +4,11 @@ from django.http import HttpResponse
 from todo_app.models import Task
 
 
-# Create your views here.
-def index(request): 
-    tasks = Task.objects.all()
+# /todos/ => list all tasks
+def index(request):     
+    tasks = Task.objects.order_by('id')
+
+    # form = TaksForm()
 
     template_file = 'todo_app/index.html'
 
@@ -19,67 +21,42 @@ def index(request):
 
     return render(request, template_file, context)
 
-# http://127.0.0.1:8000/list
-def list(request):
-    import datetime
-    
-    now = datetime.datetime.now()
-    
-    template_file = 'todo_app/list.html'
 
-    # return HttpResponse('OK')
-
-    return render(request, template_file, {'now':now})
-
-def table(request):
-    latest_tasks = Task.objects.order_by('due')[:5]
-
-    context = {
-        'latest_tasks': latest_tasks
-    }
-
-    template_file = 'todo_app/table.html'
-
-
-    return render(request, template_file, context)
-
-def delete(request, **kwargs):    
-    tasks = Task.objects.all()    
-
-    template_file = 'todo_app/index.html'
-
-
-    if request.method == 'GET':
-        item_id = request.GET['id']        
+# /todos/add => add a tasks
+def add(request): 
+    # all processing should happen only when the request method is POST
+    if request.method == 'POST':
+        return HttpResponse('OK, a post was send to add/')
+    elif request.method == 'GET':
+        return HttpResponse('Error: GET method is not allowed for /add')
     else:
-        item_id = kwargs['id']
+        return HttpResponse(f'Unknown method {request.method} ') 
 
-    context = {
-        'tasks': tasks,
-        'app_name': 'Todo App', 
-        'page_name': 'delete', 
-        # TODO_DONE     
-        'item_id': int(item_id)     
-    }
+    
+    # tasks = Task.objects.all()
 
-        
-    return render(request, template_file, context)
+    # template_file = 'todo_app/index.html'
 
-def edit(request, **kwargs):
-    item_id = kwargs['id']
+    # context = {
+    #     'tasks': tasks,
+    #     'app_name': 'Todo App', 
+    #     'page_name': 'index'       
+    # }
 
-    tasks = Task.objects.all()
 
-    template_file = 'todo_app/edit.html'
+    # return render(request, template_file, context)
 
-    context = {
-        'tasks': tasks,
-        'app_name': 'Todo App', 
-        'page_name': 'edit',      
-        'item_id': item_id     
-    }
+def delete(request, id, **kwargs):       
+    # if request.method == 'GET':
+    #     item_id = request.GET['id']        
+    # else:
+    #     item_id = kwargs['id'] 
+      
 
-        
-    return render(request, template_file, context)
+    Task.objects.filter(id=id).delete()
 
-# delete({}, id=2)
+    return redirect('index')
+
+def edit(request, id,  **kwargs):
+    return HttpResponse('Edit task')
+

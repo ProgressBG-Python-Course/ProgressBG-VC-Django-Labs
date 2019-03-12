@@ -12,9 +12,10 @@
 {% block content %}  
   <main>
     <section class="add_todo">      
-        <form>
+        <form action="{% url 'add' %}" method="POST">
+          {% csrf_token %}
           <input type="text" name="task_title" placeholder="please, enter a task title...">
-          <button>Add</button>  
+          <button type="submit">Add</button>  
         </form>      
     </section>    
     <section class="list_todos">
@@ -30,14 +31,8 @@
                 {{task.title}}
               {% endif %}
             </span>
-            <span>
-              {# hardcoded URL and query string - not good #}
-              {# <a href="/todos/delete?id={{task.id}}"><i class="fa fa-trash"></i></a> #}
-              {# <a href="/todos/edit/{{task.id}}"><i class="fa fa-pencil"></i></a> #}
-
-              {# URL and query string with url tag - good #}
-              <a href="{% url 'delete' %}?id={{task.id}}"><i class="fa fa-trash"></i></a>
-              {# URL with url tag - good #}
+            <span>             
+              <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a>
               <a href="{% url 'edit' task.id %}"><i class="fa fa-pencil"></i></a>
             </span>                        
           </li>

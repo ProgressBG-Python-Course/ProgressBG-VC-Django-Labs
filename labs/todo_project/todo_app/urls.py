@@ -2,18 +2,19 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-  # 127.0.0.1:8000/todoss
+  # /todos/ => list all tasks
   path('', views.index, name="index"),
 
-  # http://127.0.0.1:8000/todos/list
-  # path('list/', views.list),
+  # /todos/add => add a tasks
+  path('add', views.add, name="add"),
 
-  # http://127.0.0.1:8000/todos/table
-  # path('table/', views.table),
-
-  # http://127.0.0.1:8000/todos/delete?id=1
-  path('delete', views.delete, name="delete"),
+  # /todos/edit/1 => edit task with given id
+  path('edit/<int:id>', views.edit, name="edit"),
+ 
+  # /todos/delete/1 => delete task with given id
   path('delete/<int:id>', views.delete, name="delete"),
+
+  # /todos/complete/1 => set as complete the task with given id
   path('edit/<int:id>', views.edit, name="edit"),
 
 ]
