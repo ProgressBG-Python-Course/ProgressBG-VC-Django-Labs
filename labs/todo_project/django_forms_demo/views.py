@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from todo_app.models import Task
+from .forms import CreateTask
 import datetime
 
 
-app_name = 'HTML forms in Django'
-# http://127.0.0.1:8000
+app_name = 'Django Forms'
 def list_tasks(request): 
     tasks = Task.objects.all()
-    template_file = 'list_tasks.html'
+    template_file = 'django_forms_demo/list_tasks.html'
 
     context = {
+        'create_form': CreateTask(),
         'tasks': tasks,
         'app_name': app_name,         
         'page_name': 'list_tasks'       

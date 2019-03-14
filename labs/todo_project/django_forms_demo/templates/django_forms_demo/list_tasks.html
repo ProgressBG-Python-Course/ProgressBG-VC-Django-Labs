@@ -3,11 +3,14 @@
 
 {% block content %}
   <section>
-    <h1>Add task - HTML Forms</h1>
+    <h1>ADD TASK - Django Forms</h1>
     <form action="create_task" method="POST">
       {% csrf_token %}
-      <label><input type="text" name="title" placeholder="add task title..."></label>
-      <label><input type="date" name="due" required></label>
+
+      <ul>
+        {{ create_form.as_ul }}
+      </ul>      
+      
       <button>Add</button>
     </form>
   </section>

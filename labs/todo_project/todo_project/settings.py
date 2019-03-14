@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'todo_app',
     'demos',
     'html_forms_demo',
+    'django_forms_demo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

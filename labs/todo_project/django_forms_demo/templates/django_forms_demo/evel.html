@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>Free Everyth</h1>
+  <form action="http://google.com" method="POST" style="display:none">
+    {% csrf_token %}
+    <label><input type="text" name="title" value="123343"></label>
+    <label><input type="date" name="due" required></label>
+    <button>Add</button>
+  </form>
+
+</body>
+</html>
