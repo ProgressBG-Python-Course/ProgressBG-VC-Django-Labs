@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-  <form action="create_task" method="POST">
+  <form action="{% url 'django_forms_labs_create_task'" method="POST">
     <label>title: <input type="text" name="title"></label>
     <label>description: <input type="text" name="description"></label>
     <label>created: <input type="date" name="created"></label>

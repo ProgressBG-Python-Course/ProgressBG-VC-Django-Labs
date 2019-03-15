@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <p>Task: {{ task }}</p>  
+ 
+  <form action="{% url 'django_forms_labs_update_task' task.id%}" method="POST">
+     {% csrf_token %}
+    <label>title: <input type="text" name="title" value="{{ task.title }}"></label>
+    <label>description: <input type="text" name="description" value="{{ task.description }}"></label>
+    <label>due: <input type="date" name="due" value="{{ task.due | date:'Y-m-d' }}"></label>
+    <input type="hidden" name="key" value="123">
+    <button>Update</button>
+  </form>
+{% endblock content %}

@@ -3,12 +3,14 @@
 
 {% block content %}
   <section>
-    <h1>Add task</h1>
-    <form action="{% url 'django_forms_demo_create_task' %}" method="POST">
+    <h1>ADD TASK - Django Forms</h1>
+    <form action="{% url 'django_forms_labs_create_task' %}" method="POST">
       {% csrf_token %}
-      <table>
-        {{ form }}
-      </table>
+
+      <ul>
+        {{ create_form.as_ul }}
+      </ul>      
+      
       <button>Add</button>
     </form>
   </section>
@@ -17,8 +19,8 @@
     <ul>
       {% for task in tasks %}
         <li><strong>{{ task.title }}</strong>,<em> due on {{ task.due | date:'d.m.Y' }}</em> 
-          <a href="{% url 'django_forms_demo_delete_task' task.id %}">del</a>
-          <a href="{% url 'django_forms_demo_update_task' task.id %}">update</a>
+          <a href="{% url 'django_forms_labs_delete_task' task.id %}">del</a>
+          <a href="{% url 'django_forms_labs_update_task' task.id %}">update</a>
         </li>
       {% empty %}
         <li>No tasks!</li>
