@@ -1,5 +1,5 @@
 /*common rules*/
-*{
+html,body, header, footer, main, h1,h2,h3,p{
   margin:0;
   padding: 0;
   box-sizing: border-box;
@@ -27,7 +27,7 @@ header, footer{
   /*font-size: 2em;*/
 }        
 header{
-  height: 15vh;
+  min-height: 15vh;
   /*prevent vertical margin collapse*/
   border: 1px solid #666;
 }   
@@ -35,7 +35,7 @@ header h1{
   margin: .5em 0 .3em 0;
 }
 footer{
-  height: 10vh;
+  min-height: 10vh;
   line-height: 10vh;
   font-size: initial;      
 }
@@ -44,7 +44,14 @@ main{
   min-height: 75vh;
   margin:0 auto;  
   /*to prevent margin collapse*/
-  padding: 1px 0;  
+  padding: 1em 0;  
+  box-sizing: border-box;
 
   color: #666;
+}
+
+.clear:after{
+  content: "";
+  display: block;
+  clear: both;
 }

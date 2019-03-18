@@ -1,34 +1,52 @@
-
-.add_todo{        
-  height: 3em;
-  margin: 10vh 0 5vh 0;
+.list_todos>.header{
+  padding: 0 0 .5em 0;
+  /*border: 1px solid red;  */
+  /*font-size: 2em;*/
 }
-.add_todo form{
+
+/*the add button*/
+.buttonHolder{
+  float: right;
+  margin:0 auto;
+  font-size: 2em;
+  width: 2em;
+  height: 2em;
+  /*line-height: 2em;*/
+}
+.buttonHolder a{
+  text-decoration: none;
+}
+
+.button{
   position: relative;
   display: block;
-  height: 100%;
-}
-.add_todo input{
-  display: inline-block;
-  position: absolute;
-  top:0; left: 0;
-  width: 80%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;        
-}
-.add_todo button{
-  display: inline-block;
-  position: absolute;
-  top:0; right: 0;
-  height: 100%;
-  width: 20%;
-} 
 
+  margin: .3em;  
+
+  text-align: center; 
+  color:#e9e6e4;
+  text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;  
+
+  background-image: linear-gradient(top, #f4f1ee, #fff);
+  border-radius: 100%;
+  box-shadow: 
+    0px 8px 10px 0px rgba(0, 0, 0, .3), 
+    inset 0px 4px 1px 1px white, 
+    inset 0px -3px 1px 1px rgba(204,198,197,.5);
+  
+  transition: all .1s linear;
+  /*border: 1px solid red;*/
+}
+
+
+.list_todos{
+  margin: 1em 0 0 0;
+}
 .list_todos h1{
+  float: left;
   font-size: 1.5em;
-  padding: 0 0 .5em 0;
+  line-height: 2em;
+  vertical-align: middle;  
 }
 .list_todos ul{
   list-style-type: none;

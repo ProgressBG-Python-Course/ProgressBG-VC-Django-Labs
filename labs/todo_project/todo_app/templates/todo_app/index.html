@@ -10,16 +10,14 @@
 
 
 {% block content %}  
-  <main>
-    <section class="add_todo">      
-        <form action="{% url 'add' %}" method="POST">
-          {% csrf_token %}
-          <input type="text" name="task_title" placeholder="please, enter a task title...">
-          <button type="submit">Add</button>  
-        </form>      
-    </section>    
+  <main>    
     <section class="list_todos">
-      <h1>Current Tasks:</h1>
+      <div class="header clear">
+        <h1>Current Tasks:</h1>
+        <div class="buttonHolder">
+          <a href="{% url 'todo_add' %}" class="button">+</a>        
+        </div>
+      </div>
       <ul>
         {# using https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#for-empty #}
         {% for task in tasks %}                                       
@@ -32,9 +30,9 @@
               {% endif %}
             </span>
             <span>             
-              <a href="{% url 'complete' task.id%}"><i class="fa fa-check"></i></a>
-              <a href="{% url 'delete' task.id%}"><i class="fa fa-trash"></i></a>
-              <a href="{% url 'edit' task.id %}"><i class="fa fa-pencil"></i></a>
+              <a href="{% url 'todo_complete' task.id%}"><i class="fa fa-check"></i></a>
+              <a href="{% url 'todo_delete' task.id%}"><i class="fa fa-trash"></i></a>
+              <a href="{% url 'todo_update' task.id %}"><i class="fa fa-pencil"></i></a>
             </span>                        
           </li>
         {% empty %}

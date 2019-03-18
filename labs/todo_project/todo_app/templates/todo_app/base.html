@@ -4,13 +4,13 @@
 <head>
 	<title>{{page_title}}</title>
 	<meta charset="utf-8">	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
 	<link rel="stylesheet" type="text/css" href="{% static 'todo_app/base.css' %}">
 	{% block content_head %}{% endblock content_head %}	
 </head>
 <body>
 	<header>
-		<h1>{{app_name}}</h1>
-		<h2>/ {{page_name}} /</h2>
+		<h1>{{app_name}} - {{page_name}}</h1>		
 	</header>
 	{% block content %}{% endblock content %}
 	<footer>

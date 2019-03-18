@@ -1,0 +1,22 @@
+{% extends "todo_app/base.html" %}
+
+{% load static %}
+
+{% block content_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo_app/todo_form.css' %}">
+{% endblock content_head %}
+
+{% block content %}
+  <main>
+    <form action="{% url 'todo_add' %}" method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-group">
+          <label>{{ field.label }}</label>
+          {{ field }}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Add Task</button>  
+    </form>
+  </main>  
+{% endblock content %}
