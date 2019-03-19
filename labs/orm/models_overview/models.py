@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Users:
 #   id: autoincrement
@@ -13,7 +14,7 @@ from django.db import models
 class Users(models.Model):
   name = models.CharField(max_length=45)  
   age = models.IntegerField(default=0)
-  mail = models.CharField(max_length=100)
-  created_on = models.DateTimeField(auto_now_add=True)  
+  mail = models.CharField(max_length=100,null=True)
+  created_on = models.DateTimeField(default=datetime.datetime.now )  
 
 
