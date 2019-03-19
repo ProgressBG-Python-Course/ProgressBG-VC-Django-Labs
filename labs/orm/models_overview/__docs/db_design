@@ -1,0 +1,16 @@
+# create table pseudo code:
+Users:
+  id: autoincrement
+  name: varchar(max: 45)
+  age: number
+  mail: varchar
+  created_on: timestamp
+  updated_on: timestamp
+
+
+
+
+# users data:
+id | name   | age | mail            |
+1  | "ada"  | 23  | "ada@gmail.com"
+
