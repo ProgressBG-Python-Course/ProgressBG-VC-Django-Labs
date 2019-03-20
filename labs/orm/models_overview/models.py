@@ -10,11 +10,17 @@ import datetime
 
 
 
-# TODO: fix You are trying to add the field 'created_on' with 'auto_now_add=True' to users without a default
+# DONE: 
+#   problem: You are trying to add the field 'created_on' with 'auto_now_add=True' to users without a default...
+#   explain: the Model was already created, and we have set 'auto_now_add=True' on Alter..., 
+#   fix: delete all migrations and the Users Model from db and then run:
 class Users(models.Model):
   name = models.CharField(max_length=45)  
   age = models.IntegerField(default=0)
   mail = models.CharField(max_length=100,null=True)
-  created_on = models.DateTimeField(default=datetime.datetime.now )  
+  # created_on = models.DateTimeField(default=datetime.datetime.now )  
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True) 
+# more on auto_now_add: https://docs.djangoproject.com/en/2.0/ref/models/fields/#django.db.models.DateField
 
 
