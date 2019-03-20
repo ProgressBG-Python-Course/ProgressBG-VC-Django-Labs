@@ -13,7 +13,8 @@ import datetime
 # DONE: 
 #   problem: You are trying to add the field 'created_on' with 'auto_now_add=True' to users without a default...
 #   explain: the Model was already created, and we have set 'auto_now_add=True' on Alter..., 
-#   fix: delete all migrations and the Users Model from db and then run:
+#   fix1: when DB is empty: delete all migrations and the Users Model from db and then run:
+#   fix2: to prevent data loss: use fixtures
 class Users(models.Model):
   name = models.CharField(max_length=45)  
   age = models.IntegerField(default=0)
