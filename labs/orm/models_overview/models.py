@@ -8,8 +8,6 @@ import datetime
 #   mail: varchar
 #   created_on: timestamp
 
-
-
 # DONE: 
 #   problem: You are trying to add the field 'created_on' with 'auto_now_add=True' to users without a default...
 #   explain: the Model was already created, and we have set 'auto_now_add=True' on Alter..., 
@@ -24,4 +22,10 @@ class Users(models.Model):
   updated_at = models.DateTimeField(auto_now=True) 
 # more on auto_now_add: https://docs.djangoproject.com/en/2.0/ref/models/fields/#django.db.models.DateField
 
+class Task(models.Model):
+  title = models.CharField('Title', max_length=100)
+  description = models.TextField('Description', null=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  completed = models.BooleanField(default=False)
+  
 
