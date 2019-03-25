@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 import models_overview.urls
+import music.urls
 
 
 # http://127.0.0.1:8000/
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('music/', include(music.urls) ),
     path('models_overview/', include(models_overview.urls) ),
 ]

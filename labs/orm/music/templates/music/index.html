@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+</head>
+<body>
+  <h1>Index</h1>
+    {% for artist in artists %}
+      <p>artist.name</p>  
+    {% endfor %}  
+  <a href="{% url  'artist_add' %}">Add Artist</a>
+</body>
+</html>
