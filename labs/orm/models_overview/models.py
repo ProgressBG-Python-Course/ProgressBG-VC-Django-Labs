@@ -14,11 +14,13 @@ class Users(models.Model):
   mail = models.CharField(max_length=100,null=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True) 
-# more on auto_now_add: https://docs.djangoproject.com/en/2.0/ref/models/fields/#django.db.models.DateField
+
+  def __str__(self):
+    return self.name
 
 class Task(models.Model):
   title = models.CharField('Title', max_length=100)
-  description = models.TextField('Description', null=True)
+  description = models.TextField('Description', null=True, blank=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   completed = models.BooleanField(default=False)
