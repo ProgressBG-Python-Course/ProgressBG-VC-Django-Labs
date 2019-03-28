@@ -31,10 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'music',
+    'django_extensions',
     'models_overview',
-    'django-extensions',
-    # 'pure_SQL_demo',
+    'pure_SQL_demo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,7 +80,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }    
+    },
+    # 'pure_SQL_demo_DB': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': '/var/db/app1db',
+    #     'USER': 'django_admin',
+    #     'PASSWORD': '123',
+    #     'HOST': 'localhost',
+    #     'PORT': ''
+    # }
 }
 
 

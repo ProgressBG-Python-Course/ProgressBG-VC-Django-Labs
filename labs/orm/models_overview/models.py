@@ -6,17 +6,28 @@ import datetime
 #   name: varchar(max: 45, not null)
 #   age: number(not null)
 #   mail: varchar
-#   created_at: timestamp
-#   updated_at: timestamp
-# more on auto_now_add: https://docs.djangoproject.com/en/2.0/ref/models/fields/#django.db.models.DateField
-class User(models.Model):
+#   created_on: timestamp
+
+class Users(models.Model):
   name = models.CharField(max_length=45)  
   age = models.IntegerField(default=0)
   mail = models.CharField(max_length=100,null=True)
-  # created_on = models.DateTimeField(default=datetime.datetime.now )  
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True) 
 
+  def __str__(self):
+    return self.name
+
+class Task(models.Model):
+  title = models.CharField('Title', max_length=100)
+  description = models.TextField('Description', null=True, blank=True)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  completed = models.BooleanField(default=False)
+
+  def __str__(self):
+    return self.title
+  
 
 
 # One to Many relation:
