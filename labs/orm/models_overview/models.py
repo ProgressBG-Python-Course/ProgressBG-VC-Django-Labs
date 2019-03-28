@@ -40,6 +40,8 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
 
+    
+
 class Store(models.Model):
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=30)
