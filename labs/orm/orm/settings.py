@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'music',
     'models_overview',
+    'django-extensions',
     # 'pure_SQL_demo',
     'django.contrib.admin',
     'django.contrib.auth',

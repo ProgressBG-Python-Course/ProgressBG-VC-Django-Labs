@@ -2,9 +2,10 @@ from django.shortcuts import render
 from music.models import Artist
 
 # Create your views here.
-def index(request):
+def artists(request):
   artists = Artist.objects.all()
-  return render(request, 'music/index.html',{'artists':artists})
+  return render(request, 'music/artists.html',{'artists':artists})
+
 
 
 def artist_add(request):
