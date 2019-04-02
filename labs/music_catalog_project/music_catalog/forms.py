@@ -1,6 +1,4 @@
 from django import forms
-from django.forms import ModelForm,CharField
-
 from .models import Artist
 
 class FormArtist_DjangoForm(forms.Form):
@@ -24,15 +22,16 @@ class FormArtist_DjangoForm(forms.Form):
   )
 
 
-class FormArtist(ModelForm):
+class FormArtist(forms.ModelForm):
   class Meta:
     model = Artist
     # fields = ['pub_date', 'headline', 'content', 'reporter']
     exclude = ['id']
 
     # TODO: make it work as is
+    # DONE: CharField => forms.TextInput
     widgets = {
-      'name': CharField(
+      'name': forms.TextInput(
         attrs={
           'class' : 'form-control',
           'placeholder' : 'Enter an artist name...',
