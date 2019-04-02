@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add artist</title>
+</head>
+<body>  
+  <form action="artist" method="POST">
+    {% csrf_token %}
+    {% comment %}
+      <label>name: <input type="text" name="artist_name"></label>
+      <label>about: <textarea></textarea>
+    {% endcomment %}
+   
+
+    {% for field in form %}
+      <div>{{field}}</div>
+    {% endfor %}
+
+    <button>Submit</button>
+  </form>
+
+</body>
+</html>
