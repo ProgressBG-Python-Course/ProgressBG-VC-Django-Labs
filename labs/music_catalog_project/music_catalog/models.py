@@ -46,6 +46,7 @@ class Album(models.Model):
     
     class Meta:
         ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -60,10 +61,13 @@ class Track(models.Model):
   is_fav = models.BooleanField('Favourite', help_text='Tick if favourite', default= False)
   # language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
   album = models.ForeignKey(Album,on_delete=models.PROTECT)  
+  # TODO: when artist is NULL, set track.artist to Album.artist with custom methods without custom Manaer
   artist = models.ManyToManyField('Artist', related_name ='track_artist')
 
   class Meta:      
       ordering = ['name']
+
+
   def __str__(self):
       return self.name
 
