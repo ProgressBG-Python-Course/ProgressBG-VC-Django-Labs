@@ -1,6 +1,8 @@
 from django import forms 
 import re
 
+due_date_format = "%Y-%m-%dT%H:%M"
+
 # The HTML Form:
 # <form action="{% url 'todo_add' %}" method="POST">
 #   {% csrf_token %}
@@ -32,11 +34,13 @@ class CreateUpdateTaskForm(forms.Form):
   )
 
   # due = forms.DateTimeInput(format="%d %b %Y %H:%M:%S %Z")
+  #  2019-04-10T01:00
   due = forms.DateTimeField(
     required=False, 
     widget = forms.DateInput(
       attrs={'type': 'datetime-local', 'class': 'form-control'}
-    )
+    ),
+    input_formats = [due_date_format,]
   )
 
 

@@ -36,6 +36,8 @@ def add(request):
     # save the filled form data to DB:
     if request.method == 'POST':       
       form = CreateUpdateTaskForm(request.POST)
+
+      print(f"#########: {request.POST.get('due')}")
       
       if form.is_valid(): 
         title = form.cleaned_data['title'],
