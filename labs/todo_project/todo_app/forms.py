@@ -1,4 +1,5 @@
 from django import forms 
+import re
 
 # The HTML Form:
 # <form action="{% url 'todo_add' %}" method="POST">
@@ -17,7 +18,7 @@ class CreateUpdateTaskForm(forms.Form):
         'class' : 'form-control', 
         'placeholder' : 'Enter todo title...', 
       }
-    )
+    )    
   )
 
   description = forms.CharField(    
@@ -30,12 +31,26 @@ class CreateUpdateTaskForm(forms.Form):
     )    
   )
 
-
   # due = forms.DateTimeInput(format="%d %b %Y %H:%M:%S %Z")
   due = forms.DateTimeField(
     required=False, 
     widget = forms.DateInput(
-      attrs={'type': 'date', 'class': 'form-control'}
+      attrs={'type': 'datetime-local', 'class': 'form-control'}
     )
   )
+
+
+  def clean_title(self):
+    title = self.cleaned_data['title'],
+    # title must be 5 or more symbols
+    if len(title) < 5:
+      raise forms.ValidationError("title must be 5 or more symbols")
+
+    # title must start with letter:
+    if (re.match( r'^[A-z]', title)):
+      raise forms.ValidationError("title must start with letter")
+
+
+    return cleaned_data
+
 

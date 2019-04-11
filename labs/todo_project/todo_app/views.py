@@ -10,6 +10,8 @@ from todo_app.forms import CreateUpdateTaskForm
 
 
 app_name="Todo App"
+due_date_format = "%Y-%m-%dT%H:%M"
+
 # /todos/ => list all tasks
 def index(request):
     tasks = Task.objects.order_by('id')
@@ -35,37 +37,36 @@ def add(request):
     if request.method == 'POST':       
       form = CreateUpdateTaskForm(request.POST)
       
-      if form.is_valid: 
-        title = request.POST.get('title'),
-        description = request.POST.get('description','default description'),        
+      if form.is_valid(): 
+        title = form.cleaned_data['title'],
+        description = form.cleaned_data['description'],
+
         if request.POST.get('due'):
-          due = make_aware(datetime.datetime.strptime(request.POST.get('due'), '%Y-%m-%d')) 
+          # due = make_aware(datetime.datetime.strptime(request.POST.get('due'), due_date_format)) 
+          due = form.cleaned_data['due'],
         else:
-          due = make_aware(datetime.datetime.now() + datetime.timedelta(days=1))
+          due= make_aware(datetime.datetime.now() + datetime.timedelta(days=1))
 
-        Task.objects.create(
-          title = request.POST.get('title'),
-          description = request.POST.get('description','default description'),
-          due = due
-        )
+        Task.objects.create( title = title, description = description, due = due)
+        return redirect('todo_index')      
       else:
-        return HttpResponse("form is not validated") 
-        
-      return redirect('todo_index')      
+        # render the form with error messages
+        print(form.errors)         
 
+        # return HttpResponse("form is not validated")             
     # render the create form:
     elif request.method == 'GET':      
       form = CreateUpdateTaskForm()    
 
-      template_file = 'todo_app/add.html'
+    template_file = 'todo_app/add.html'
 
-      context = {
-          'form': form,
-          'app_name': app_name,         
-          'page_name': 'Add Task'       
-      }
+    context = {
+        'form': form,
+        'app_name': app_name,         
+        'page_name': 'Add Task'       
+    }
 
-      return render(request, template_file, context)
+    return render(request, template_file, context)
 
 
 # /todos/update/id => update a task with given id
@@ -78,7 +79,9 @@ def update(request, id,  **kwargs):
       task = Task.objects.filter(id=id).update(
         title = request.POST.get('title'),
         description = request.POST.get('description','default description'),
-        due = make_aware(datetime.datetime.strptime(request.POST.get('due'), '%Y-%m-%d')) 
+        
+        # request.POST.get('due') = # "2019-04-13T01:00"
+        due = make_aware(datetime.datetime.strptime(request.POST.get('due'), due_date_format)) 
       ) 
       return redirect('todo_index')
   else: 
