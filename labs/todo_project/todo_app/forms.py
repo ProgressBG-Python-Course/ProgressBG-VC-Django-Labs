@@ -21,6 +21,7 @@ class CreateUpdateTaskForm(forms.Form):
   title = forms.CharField(
     max_length=100,
     required=True, 
+    help_text="Enter a Task Title",
     widget=forms.TextInput(
       attrs={
         'class' : 'form-control', 
@@ -31,6 +32,7 @@ class CreateUpdateTaskForm(forms.Form):
 
   description = forms.CharField(    
     required=False,
+    help_text="Enter a Task Description",
     widget=forms.Textarea(
       attrs={
         'class' : 'form-control', 
@@ -41,6 +43,7 @@ class CreateUpdateTaskForm(forms.Form):
 
   due = forms.DateTimeField(
     initial=days_from_now_1,
+    help_text="Task Due (default - 1 day from now)",
     widget = forms.DateTimeInput(
       attrs={'type': 'datetime-local', 'class': 'form-control'},
       format= due_date_format

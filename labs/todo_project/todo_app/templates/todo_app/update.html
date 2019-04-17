@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content_head %}
-  
+  <link rel="stylesheet" type="text/css" href="{% static 'todo_app/todo_form.css' %}">
 {% endblock content_head %}
 
 {% block content %}
@@ -14,6 +14,7 @@
         <div class="form-group">
           <label>{{ field.label }}</label>
           {{ field }}
+          <i class="fa fa-question-circle-o help_text" title="{{field.help_text}}"></i>
           
           {% for item in field.errors  %}
           <div style="color:#F00">{{item}}</div>

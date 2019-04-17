@@ -9,9 +9,9 @@ def days_from_now_1():
 # Create your models here.
 class Task(models.Model):
   id = models.AutoField(primary_key=True)
-  title = models.CharField('Title', max_length=100)
-  description = models.TextField('Description', null=True)  
-  due = models.DateTimeField('due', default=days_from_now_1)
+  title = models.CharField('Title', max_length=100, help_text="Task Title")
+  description = models.TextField('Description', null=True, help_text="Task Description")  
+  due = models.DateTimeField('due', default=days_from_now_1, help_text="Task Due (default - 1 day from now)")
   
   created = models.DateTimeField(auto_now_add=True)
   completed = models.BooleanField(default=False)

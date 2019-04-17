@@ -2,3 +2,15 @@
   background-color: #999;
   border-color: #999;
 }
+.form-group{
+  position: relative;
+}
+.form-group .help_text{  
+  position: absolute;  
+  top: 1.5em; right: 5px;
+  font-size: 1.6em;
+  color: #86D7DF
+}
+.form-group .help_text:hover{
+  /*cursor: help;*/
+}

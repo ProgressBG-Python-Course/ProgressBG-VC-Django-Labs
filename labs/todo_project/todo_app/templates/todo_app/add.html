@@ -14,6 +14,7 @@
         <div class="form-group">
           <label>{{ field.label }}</label>
           {{ field }}
+          <i class="fa fa-question-circle-o help_text" title="{{field.help_text}}"></i>
           
           {% for item in field.errors  %}
           <div style="color:#F00">{{item}}</div>
