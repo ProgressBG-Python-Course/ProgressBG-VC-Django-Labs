@@ -14,6 +14,7 @@ class FormArtist_DjangoForm(forms.Form):
   )
 
   about = forms.CharField(
+    required=False,
     widget=forms.Textarea(
       attrs = {
         'placeholder': 'About Artist'
@@ -38,3 +39,19 @@ class FormArtist(forms.ModelForm):
         }
       )
     }
+
+  # def is_valid(self):
+  #   print(f"self: {self}")    
+  #   is_valid = super(FormArtist, self).is_valid()    
+  #   if not is_valid:
+  #     print("###########################")
+  #     print(f"self.errors: {self.errors}")
+  #     for field in self.errors.keys():
+  #       print("ValidationError: {}{} : {}{}".format(
+  #           type(self),
+  #           field,
+  #           self.data[field],
+  #           self.errors[field].as_text()
+  #         )
+  #       )
+  #   return is_valid
