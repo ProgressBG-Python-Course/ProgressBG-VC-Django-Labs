@@ -37,25 +37,19 @@ def add(request):
     if request.method == 'POST':       
       form = CreateUpdateTaskForm(request.POST)
 
-      print(f"#########: {request.POST.get('due')}")
-      
       if form.is_valid(): 
-        title = form.cleaned_data['title'],
-        description = form.cleaned_data['description'],
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
 
-        if request.POST.get('due'):
-          # due = make_aware(datetime.datetime.strptime(request.POST.get('due'), due_date_format)) 
-          due = form.cleaned_data['due'],
+        if request.POST.get('due', None):
+          due = form.cleaned_data['due']
         else:
           due= make_aware(datetime.datetime.now() + datetime.timedelta(days=1))
 
         Task.objects.create( title = title, description = description, due = due)
-        return redirect('todo_index')      
+        return redirect('todo_index')       
       else:
-        # render the form with error messages
-        print(form.errors)         
-
-        # return HttpResponse("form is not validated")             
+        print(f"###### INVALID FORM")           
     # render the create form:
     elif request.method == 'GET':      
       form = CreateUpdateTaskForm()    
@@ -73,34 +67,34 @@ def add(request):
 
 # /todos/update/id => update a task with given id
 def update(request, id,  **kwargs):
+  task = Task.objects.get(id=id)
+
   if request.method == "POST":    
     form = CreateUpdateTaskForm(request.POST)
     
-    if form.is_valid:        
-      # if data is valid => save it to DB
-      task = Task.objects.filter(id=id).update(
-        title = request.POST.get('title'),
-        description = request.POST.get('description','default description'),
-        
-        # request.POST.get('due') = # "2019-04-13T01:00"
-        due = make_aware(datetime.datetime.strptime(request.POST.get('due'), due_date_format)) 
-      ) 
-      return redirect('todo_index')
+    if form.is_valid():       
+      title = form.cleaned_data['title']
+      description = form.cleaned_data['description']
+      due = form.cleaned_data['due']
+
+      Task.objects.filter(id=id).update( title = title, description = description, due = due)
+
+      return redirect('todo_index')    
   else: 
-    # render the update form:
-    task = Task.objects.get(id=id)
+    # render the update form on Get method:    
     form = CreateUpdateTaskForm(model_to_dict(task))    
 
-    template_file = 'todo_app/update.html'
 
-    context = {
-        'task': task,
-        'form': form,
-        'app_name': app_name,         
-        'page_name': 'Update Task'       
-    }
+  template_file = 'todo_app/update.html'
 
-    return render(request, template_file, context)
+  context = {
+      'task': task,
+      'form': form,
+      'app_name': app_name,         
+      'page_name': 'Update Task'       
+  }
+
+  return render(request, template_file, context)
 
 # /todos/delete/id => delete a task with given id
 def delete(request, id, **kwargs):          

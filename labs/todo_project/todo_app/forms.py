@@ -1,7 +1,10 @@
 from django import forms 
+from django.utils.timezone import make_aware
+from django.utils import timezone
+import datetime
 import re
 
-due_date_format = "%Y-%m-%dT%H:%M"
+due_date_format = "%Y-%m-%dT%H:%M" #  2019-04-10T01:00
 
 # The HTML Form:
 # <form action="{% url 'todo_add' %}" method="POST">
@@ -9,6 +12,9 @@ due_date_format = "%Y-%m-%dT%H:%M"
 #   <input type="text" name="task_title" placeholder="please, enter a task title...">
 #   <button type="submit">Add</button>  
 # </form>
+
+def days_from_now_1():  
+  return timezone.now() + timezone.timedelta(days=1)
 
 class CreateUpdateTaskForm(forms.Form):
   # add input field for title = models.CharField('Title', max_length=100)
@@ -33,28 +39,40 @@ class CreateUpdateTaskForm(forms.Form):
     )    
   )
 
-  # due = forms.DateTimeInput(format="%d %b %Y %H:%M:%S %Z")
-  #  2019-04-10T01:00
   due = forms.DateTimeField(
-    required=False, 
-    widget = forms.DateInput(
-      attrs={'type': 'datetime-local', 'class': 'form-control'}
+    initial=days_from_now_1,
+    widget = forms.DateTimeInput(
+      attrs={'type': 'datetime-local', 'class': 'form-control'},
+      format= due_date_format
     ),
     input_formats = [due_date_format,]
   )
 
 
   def clean_title(self):
-    title = self.cleaned_data['title'],
-    # title must be 5 or more symbols
-    if len(title) < 5:
-      raise forms.ValidationError("title must be 5 or more symbols")
-
-    # title must start with letter:
-    if (re.match( r'^[A-z]', title)):
+    title = self.cleaned_data.get('title', None)
+    
+    if len(title) < 3:
+      raise forms.ValidationError("title must be 3 or more symbols")
+    
+    if (not re.match( r'^[A-z]', title)):
       raise forms.ValidationError("title must start with letter")
 
+    # always return the cleaned data
+    return title
 
-    return cleaned_data
+  def clean_due(self):
+    # clean the data:
+    data = self.cleaned_data.get('due')
+
+    # Check if a date is not in the past.
+    now = make_aware(datetime.datetime.now())
+
+    if data < now:
+      raise forms.ValidationError('Invalid date - due date is in past')
+
+
+    # always return the cleaned data.
+    return data
 
 
