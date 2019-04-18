@@ -5,3 +5,5 @@ urlpatterns = [
     path('', views.index, name='index'  ),
     path('artist', views.artist, name='artist'  ),
 ]
+
+

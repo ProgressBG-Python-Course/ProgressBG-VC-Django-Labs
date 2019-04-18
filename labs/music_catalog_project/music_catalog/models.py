@@ -11,9 +11,9 @@ class Genre(models.Model):
   notes = models.TextField('About', null=True, blank=True, help_text='Notes')
 
   class Meta:      
-      ordering = ['name']
+    ordering = ['name']
   def __str__(self):
-      return self.name
+    return self.name
 
 
 ''' 
