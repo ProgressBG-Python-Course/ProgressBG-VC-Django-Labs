@@ -8,6 +8,7 @@
 
 {% block content %}
   <main>
+    {# <img src="/media/images/todo1.png"> #}
     <form action="{% url 'todo_update' task.id %}" method="POST">
       {% csrf_token %}
       {% for field in form %}

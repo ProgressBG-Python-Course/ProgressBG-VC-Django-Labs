@@ -29,6 +29,8 @@ class CreateUpdateTaskForm(forms.Form):
       }
     )    
   )
+  
+  image = forms.ImageField(required=False)
 
   description = forms.CharField(    
     required=False,

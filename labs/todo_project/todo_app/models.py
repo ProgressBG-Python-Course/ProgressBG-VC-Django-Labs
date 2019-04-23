@@ -10,7 +10,14 @@ def days_from_now_1():
 class Task(models.Model):
   id = models.AutoField(primary_key=True)
   title = models.CharField('Title', max_length=100, help_text="Task Title")
-  description = models.TextField('Description', null=True, help_text="Task Description")  
+  description = models.TextField('Description', null=True, help_text="Task Description") 
+
+  # TODO: image is not uploaded!!!
+  image = models.ImageField('Image', 
+    null=False, 
+    blank=True, 
+    help_text='Task image', 
+    upload_to='images/%Y_%m_%d')
   due = models.DateTimeField('due', default=days_from_now_1, help_text="Task Due (default - 1 day from now)")
   
   created = models.DateTimeField(auto_now_add=True)

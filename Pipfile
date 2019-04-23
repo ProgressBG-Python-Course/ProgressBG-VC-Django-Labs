@@ -10,6 +10,7 @@ django = "*"
 bpython = "*"
 django-extensions = "*"
 mysqlclient = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
