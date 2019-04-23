@@ -49,7 +49,9 @@ def add(request):
         Task.objects.create( title = title, description = description, due = due)
         return redirect('todo_index')       
       else:
-        print(f"###### INVALID FORM")           
+        print(f"\nform.errors: {form.errors.items()}\n")
+        pass
+        # print(f"###### INVALID FORM")           
     # render the create form:
     elif request.method == 'GET':      
       form = CreateUpdateTaskForm()    

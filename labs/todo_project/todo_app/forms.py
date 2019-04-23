@@ -53,13 +53,15 @@ class CreateUpdateTaskForm(forms.Form):
 
 
   def clean_title(self):
-    title = self.cleaned_data.get('title', None)
-    
-    if len(title) < 3:
-      raise forms.ValidationError("title must be 3 or more symbols")
-    
+    title = self.cleaned_data.get('title', None)        
+
+    # TODO: multiple errors per field
     if (not re.match( r'^[A-z]', title)):
       raise forms.ValidationError("title must start with letter")
+
+    if len(title) < 3:
+      raise forms.ValidationError("title must be 3 or more symbols")
+        
 
     # always return the cleaned data
     return title
