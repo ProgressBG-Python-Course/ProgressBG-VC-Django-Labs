@@ -17,11 +17,14 @@ class Task(models.Model):
     null=False, 
     blank=True, 
     help_text='Task image', 
-    upload_to='images/%Y_%m_%d')
+    upload_to='images/')
+
   due = models.DateTimeField('due', default=days_from_now_1, help_text="Task Due (default - 1 day from now)")
   
   created = models.DateTimeField(auto_now_add=True)
   completed = models.BooleanField(default=False)
+
+  # print(f'############: image: {image.upload_to}')
   
 
   def __str__(self):
