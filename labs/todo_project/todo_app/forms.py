@@ -58,11 +58,18 @@ class CreateUpdateTaskForm(forms.Form):
     title = self.cleaned_data.get('title', None)        
 
     # TODO: multiple errors per field
+    # DONE: https://docs.djangoproject.com/en/2.2/ref/forms/validation/#raising-multiple-errors
+    errors_list = [];
     if (not re.match( r'^[A-z]', title)):
-      raise forms.ValidationError("title must start with letter")
+      e1 = forms.ValidationError("title must start with letter")
+      errors_list.append(e1)
 
     if len(title) < 3:
-      raise forms.ValidationError("title must be 3 or more symbols")
+      e2 = forms.ValidationError("title must be 3 or more symbols")
+      errors_list.append(e2)
+
+    if errors_list:
+      raise forms.ValidationError(errors_list)
         
 
     # always return the cleaned data
