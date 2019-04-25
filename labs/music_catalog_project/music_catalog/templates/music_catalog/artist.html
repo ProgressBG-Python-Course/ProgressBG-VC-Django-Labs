@@ -4,20 +4,14 @@
   <title>Add artist</title>
 </head>
 <body>  
-  <form action="artist" method="POST">
+  <form action="artist" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {% comment %}
-      <label>name: <input type="text" name="artist_name"></label>
-      <label>about: <textarea></textarea>
-    {% endcomment %}
-   
 
     {% for field in form %}
-      <div>{{field}}</div>
+      <div title="{{ field.help_text }}">{{field}}</div>
+      {{ field.errors }}
     {% endfor %}
-
     <button>Submit</button>
   </form>
-
 </body>
 </html>

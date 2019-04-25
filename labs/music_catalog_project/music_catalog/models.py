@@ -22,7 +22,7 @@ class Genre(models.Model):
 class Artist(models.Model):
     name = models.CharField('Name', max_length=50, help_text='Enter the name of the Artist')
     about = models.TextField('About', null=True, blank=True, help_text='About Artist')
-    thumbnail = models.ImageField("Image", help_text='Uplaod Image of the Artist', upload_to='static/artist/images', default='static/artist/default.jpg')
+    thumbnail = models.ImageField("Image", help_text='Uplaod Image of the Artist', upload_to='artist/images/', default='/artist/images/default.jpg')
     birth_date = models.DateField('Birth Date', null=True, blank=True, help_text='Birth date of Artist')
     is_fav = models.BooleanField('Favourite', help_text='Tick if favourite', default= False)
 

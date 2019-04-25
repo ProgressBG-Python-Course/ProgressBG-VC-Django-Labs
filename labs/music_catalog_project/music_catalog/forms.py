@@ -28,9 +28,7 @@ class FormArtist(forms.ModelForm):
     model = Artist
     # fields = ['pub_date', 'headline', 'content', 'reporter']
     exclude = ['id']
-
-    # TODO: make it work as is
-    # DONE: CharField => forms.TextInput
+        
     widgets = {
       'name': forms.TextInput(
         attrs={
@@ -40,18 +38,18 @@ class FormArtist(forms.ModelForm):
       )
     }
 
-  # def is_valid(self):
-  #   print(f"self: {self}")    
-  #   is_valid = super(FormArtist, self).is_valid()    
-  #   if not is_valid:
-  #     print("###########################")
-  #     print(f"self.errors: {self.errors}")
-  #     for field in self.errors.keys():
-  #       print("ValidationError: {}{} : {}{}".format(
-  #           type(self),
-  #           field,
-  #           self.data[field],
-  #           self.errors[field].as_text()
-  #         )
-  #       )
-  #   return is_valid
+  def is_valid(self):
+    print(f"self: {self}")    
+    is_valid = super(FormArtist, self).is_valid()    
+    if not is_valid:
+      print("###########################")
+      print(f"self.errors: {self.errors}")
+      for field in self.errors.keys():
+        print("ValidationError: {}{} : {}{}".format(
+            type(self),
+            field,
+            self.data[field],
+            self.errors[field].as_text()
+          )
+        )
+    return is_valid
