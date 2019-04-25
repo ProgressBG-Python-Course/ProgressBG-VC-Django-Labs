@@ -11,4 +11,7 @@ urlpatterns = [
   path('django_forms_demo/', include('django_forms_demo.urls')),  
   path('demos/', include('demos.urls')),  
   path('admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

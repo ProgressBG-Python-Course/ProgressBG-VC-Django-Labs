@@ -35,23 +35,28 @@ def index(request):
 def add(request): 
     # save the filled form data to DB:
     if request.method == 'POST':       
-      form = CreateUpdateTaskForm(request.POST)
+      form = CreateUpdateTaskForm(request.POST, request.FILES)
 
       if form.is_valid(): 
         title = form.cleaned_data['title']
         description = form.cleaned_data['description']
+        image = form.cleaned_data['image']
 
         if request.POST.get('due', None):
           due = form.cleaned_data['due']
         else:
           due= make_aware(datetime.datetime.now() + datetime.timedelta(days=1))
 
-        Task.objects.create( title = title, description = description, due = due)
+        Task.objects.create( 
+          title = title, 
+          description = description, 
+          image=image,
+          due = due,
+        )
         return redirect('todo_index')       
       else:
         print(f"\nform.errors: {form.errors.items()}\n")
         pass
-        # print(f"###### INVALID FORM")           
     # render the create form:
     elif request.method == 'GET':      
       form = CreateUpdateTaskForm()    
@@ -72,19 +77,26 @@ def update(request, id,  **kwargs):
   task = Task.objects.get(id=id)
 
   if request.method == "POST":    
-    form = CreateUpdateTaskForm(request.POST)
+    form = CreateUpdateTaskForm(request.POST, request.FILES)
     
     if form.is_valid():       
       title = form.cleaned_data['title']
       description = form.cleaned_data['description']
+      image = form.cleaned_data['image']
       due = form.cleaned_data['due']
 
-      Task.objects.filter(id=id).update( title = title, description = description, due = due)
+      Task.objects.filter(id=id).update( 
+        title = title, 
+        description = description, 
+        image=image,
+        due = due,
+        )
 
       return redirect('todo_index')    
   else: 
     # render the update form on Get method:    
-    form = CreateUpdateTaskForm(model_to_dict(task))    
+    form = CreateUpdateTaskForm(model_to_dict(task)) 
+    print(f'####form: {form}')   
 
 
   template_file = 'todo_app/update.html'
