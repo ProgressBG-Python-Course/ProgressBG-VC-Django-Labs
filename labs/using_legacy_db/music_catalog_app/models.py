@@ -3,7 +3,7 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
@@ -16,8 +16,9 @@ class Album(models.Model):
   release_date = models.DateField(blank=True, null=True)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'album'
+    ordering = ('name', )
 
   def __str__(self):
     return self.name
@@ -30,8 +31,9 @@ class Artist(models.Model):
   thumbnail = models.CharField(max_length=100, blank=True, null=True)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'artist'
+    ordering = ('name', )
 
   def __str__(self):
     return self.name
@@ -41,8 +43,9 @@ class Genre(models.Model):
   notes = models.TextField(blank=True, null=True)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'genre'
+    ordering = ('name', )    
 
   def __str__(self):
     return self.name
@@ -55,8 +58,9 @@ class Track(models.Model):
   album = models.ForeignKey(Album, models.DO_NOTHING)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'track'
+    ordering = ('name', )
 
   def __str__(self):
     return self.name
@@ -67,7 +71,7 @@ class AlbumArtist(models.Model):
   artist = models.ForeignKey('Artist', models.DO_NOTHING)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'album_artist'
     unique_together = (('album', 'artist'),)
 
@@ -76,7 +80,7 @@ class AlbumGenre(models.Model):
   genre = models.ForeignKey('Genre', models.DO_NOTHING)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'album_genre'
     unique_together = (('album', 'genre'),)
 
@@ -85,6 +89,6 @@ class TrackArtist(models.Model):
   artist = models.ForeignKey(Artist, models.DO_NOTHING)
 
   class Meta:
-    managed = False
+    managed = True
     db_table = 'track_artist'
     unique_together = (('track', 'artist'),)
