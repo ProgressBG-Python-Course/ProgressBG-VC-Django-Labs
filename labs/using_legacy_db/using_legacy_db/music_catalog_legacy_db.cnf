@@ -1,0 +1,6 @@
+[client]
+database = music_catalog_legacy_db
+user = django_admin
+password = 123
+default-character-set = utf8
+
