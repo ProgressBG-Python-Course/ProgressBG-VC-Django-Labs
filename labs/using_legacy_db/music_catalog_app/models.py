@@ -7,22 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
-class Album(models.Model):
-  name = models.CharField(max_length=50)
-  about = models.TextField(blank=True, null=True)
-  thumbnail = models.CharField(max_length=100, blank=True, null=True)
-  is_fav = models.IntegerField(blank=True, null=True)
-  release_date = models.DateField(blank=True, null=True)
-
-  class Meta:
-    managed = True
-    db_table = 'album'
-    ordering = ('name', )
-
-  def __str__(self):
-    return self.name
-
 class Artist(models.Model):
   name = models.CharField(max_length=50)
   about = models.TextField(blank=True, null=True)
@@ -50,12 +34,30 @@ class Genre(models.Model):
   def __str__(self):
     return self.name
 
+class Album(models.Model):
+  name = models.CharField(max_length=50)
+  about = models.TextField(blank=True, null=True)
+  thumbnail = models.CharField(max_length=100, blank=True, null=True)
+  is_fav = models.IntegerField(blank=True, null=True)
+  release_date = models.DateField(blank=True, null=True)
+  artist = models.ManyToManyField(Artist)
+  genre = models.ManyToManyField(Genre)
+
+  class Meta:
+    managed = True
+    db_table = 'album'
+    ordering = ('name', )
+
+  def __str__(self):
+    return self.name
+
 class Track(models.Model):
   name = models.CharField(max_length=50)
   duration = models.PositiveIntegerField(blank=True, null=True)
   lyrics = models.TextField(blank=True, null=True)
   is_fav = models.IntegerField(blank=True, null=True)
   album = models.ForeignKey(Album, models.DO_NOTHING)
+  artist = models.ManyToManyField(Artist)
 
   class Meta:
     managed = True
@@ -64,31 +66,3 @@ class Track(models.Model):
 
   def __str__(self):
     return self.name
-
-
-class AlbumArtist(models.Model):
-  album = models.ForeignKey(Album, models.DO_NOTHING, primary_key=True)
-  artist = models.ForeignKey('Artist', models.DO_NOTHING)
-
-  class Meta:
-    managed = True
-    db_table = 'album_artist'
-    unique_together = (('album', 'artist'),)
-
-class AlbumGenre(models.Model):
-  album = models.ForeignKey(Album, models.DO_NOTHING, primary_key=True)
-  genre = models.ForeignKey('Genre', models.DO_NOTHING)
-
-  class Meta:
-    managed = True
-    db_table = 'album_genre'
-    unique_together = (('album', 'genre'),)
-
-class TrackArtist(models.Model):
-  track = models.ForeignKey(Track, models.DO_NOTHING, primary_key=True)
-  artist = models.ForeignKey(Artist, models.DO_NOTHING)
-
-  class Meta:
-    managed = True
-    db_table = 'track_artist'
-    unique_together = (('track', 'artist'),)
