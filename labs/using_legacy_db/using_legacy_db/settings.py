@@ -88,7 +88,7 @@ DATABASES = {
 }
 
 # path: using_legacy_db/music_catalog_legacy_db_router.py
-DATABASE_ROUTERS = ['using_legacy_db.music_catalog_legacy_db_router.MusicCatalogLegacyDbRouter']
+DATABASE_ROUTERS = ['using_legacy_db.db_router.MusicCatalogLegacyDbRouter']
 
 
 # Password validation

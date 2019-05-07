@@ -1,6 +1,6 @@
 class MusicCatalogLegacyDbRouter:
     """
-    A router to control all database operations on models 
+    A router to control all database operations on models
     in the music_catalog_app.
     """
     def db_for_read(self, model, **hints):
@@ -20,12 +20,12 @@ class MusicCatalogLegacyDbRouter:
         if obj1._meta.app_label == 'music_catalog_app' and \
             obj2._meta.app_label == 'music_catalog_app':
             return True
-        # Allow if neither is part of worlddata app
+        # Allow if neither is part of music_catalog_app  app
         elif 'music_catalog_app' not in [obj1._meta.app_label, obj2._meta.app_label]:
             return True
         # by default return None - "undecided"
 
-    def allow_migrate(self, db, app_label, model_name=None, **hints):       
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
         # allow migrations on the "default" (django related data) DB
         if db == 'default' and app_label != 'music_catalog_app':
             return True
