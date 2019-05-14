@@ -53,33 +53,32 @@ def add(request):
           image=image,
           due = due,
         )
-        return redirect('todo_index')       
+        return redirect('todo_index')      
       else:
         print(f"\nform.errors: {form.errors.items()}\n")
         pass
     # render the create form:
-    elif request.method == 'GET':      
-      form = CreateUpdateTaskForm()    
+    elif request.method == 'GET':     
+      form = CreateUpdateTaskForm() 
 
     template_file = 'todo_app/add.html'
 
     context = {
         'form': form,
-        'app_name': app_name,         
-        'page_name': 'Add Task'       
+        'app_name': app_name,        
+        'page_name': 'Add Task'    
     }
 
     return render(request, template_file, context)
-
 
 # /todos/update/id => update a task with given id
 def update(request, id,  **kwargs):
   task = Task.objects.get(id=id)
 
-  if request.method == "POST":    
+  if request.method == "POST":  
     form = CreateUpdateTaskForm(request.POST, request.FILES)
     
-    if form.is_valid():       
+    if form.is_valid():    
       title = form.cleaned_data['title']
       description = form.cleaned_data['description']
       image = form.cleaned_data['image']
@@ -92,9 +91,9 @@ def update(request, id,  **kwargs):
         due = due,
         )
 
-      return redirect('todo_index')    
+      return redirect('todo_index') 
   else: 
-    # render the update form on Get method:    
+    # render the update form on Get method: 
     form = CreateUpdateTaskForm(model_to_dict(task)) 
     print(f'####form: {form}')   
 
@@ -104,14 +103,14 @@ def update(request, id,  **kwargs):
   context = {
       'task': task,
       'form': form,
-      'app_name': app_name,         
+      'app_name': app_name,      
       'page_name': 'Update Task'       
   }
 
   return render(request, template_file, context)
 
 # /todos/delete/id => delete a task with given id
-def delete(request, id, **kwargs):          
+def delete(request, id, **kwargs):        
 
     Task.objects.filter(id=id).delete()
 

@@ -14,7 +14,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(f"BASE_DIR: {BASE_DIR}")
 
 
 # Quick-start development settings - unsuitable for production
@@ -55,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'livereload.middleware.LiveReloadScript',
+    'todo_project.middlewares.SOMiddleware',
+    # 'todo_project.middlewares.TimeStampMiddleware'
 ]
 
 ROOT_URLCONF = 'todo_project.urls'
