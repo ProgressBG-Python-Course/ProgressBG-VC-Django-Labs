@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [	  
+  path('auth/', include('user_auth.urls')),
   path('todos/', include('todo_app.urls')),
   path('html_forms/', include('html_forms_demo.urls')),  
   path('django_forms_labs/', include('django_forms_labs.urls')),  
