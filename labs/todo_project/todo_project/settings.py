@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # 'livereload'
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = [    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,8 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'livereload.middleware.LiveReloadScript',
     'todo_project.middlewares.SOMiddleware',
+    # 'livereload.middleware.LiveReloadScript',
     # 'todo_project.middlewares.TimeStampMiddleware'
 ]
 

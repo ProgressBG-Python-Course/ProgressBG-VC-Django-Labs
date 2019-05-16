@@ -9,7 +9,7 @@ app_name="create_user"
 
 # /todos/ => list all tasks
 def create_user(request):
-	 user = User.objects.create_user('pesho', 'pesho@peho.com', '123')
+	 user = User.objects.create_user('pesho2', 'pesho@peho.com', '123')
 	 # we can add/change other properties if we want later
 
 	 user.save();
