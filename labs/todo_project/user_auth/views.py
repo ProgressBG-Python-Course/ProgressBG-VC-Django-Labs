@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 app_name="create_user"
 
+
+# login view
+
 # /todos/ => list all tasks
 def create_user(request):
 	 user = User.objects.create_user('pesho2', 'pesho@peho.com', '123')
