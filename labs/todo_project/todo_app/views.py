@@ -16,6 +16,8 @@ due_date_format = "%Y-%m-%dT%H:%M"
 def index(request):
     tasks = Task.objects.order_by('id')
 
+    # generate json from tasks
+    
     # form = TaksForm()
 
     template_file = 'todo_app/index.html'

@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 
-print(f'########: {auth_views.__dir__()}')
+# print(f'########: {auth_views.__dir__()}')
 
 urlpatterns = [
   path('login', auth_views.LoginView, name="login"),
