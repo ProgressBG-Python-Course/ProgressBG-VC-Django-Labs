@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [	  
   path('auth/', include('user_auth.urls')),
   path('todos/', include('todo_app.urls')),
+  path('todos_rest/', include('todo_rest_api.urls')),
   path('html_forms/', include('html_forms_demo.urls')),  
   path('django_forms_labs/', include('django_forms_labs.urls')),  
   path('django_forms_demo/', include('django_forms_demo.urls')),  

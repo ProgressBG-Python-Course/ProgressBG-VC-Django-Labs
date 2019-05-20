@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def days_from_now_1():  
-  return timezone.now() + timezone.timedelta(days=n)
+  return timezone.now() + timezone.timedelta(days=1)
 
 # Create your models here.
 class Task(models.Model):
