@@ -1,0 +1,1 @@
+python manage.py runserver --settings=todo_rest_project.settings
