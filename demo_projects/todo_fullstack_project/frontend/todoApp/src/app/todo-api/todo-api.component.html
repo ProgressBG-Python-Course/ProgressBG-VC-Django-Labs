@@ -11,8 +11,9 @@
     </div>
     <div class="data">
       <ul class="list-instyled">
-        <li *ngFor="let todo of todoArray">{{todo}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
+        <li *ngFor="let todo of todos | async">{{todo.title}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
       </ul>
     </div>
+    <button type="button" class="button btn-danger" (click)='deleteAllTodos()'>Delete All</button>
   </form>  
 </div>

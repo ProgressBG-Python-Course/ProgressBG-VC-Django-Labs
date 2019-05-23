@@ -10,34 +10,26 @@ import { Todo } from '../todo';
   styleUrls: ['./todo-api.component.css']
 })
 export class TodoApiComponent implements OnInit {
-  todoArray=[];
+  todos: Observable<Todo[]>;
 
-  addItem(value){
-    this.todoArray.push(value)
-    console.log(this.todoArray)
-  }
-  // to submit item with enter, not only  with add btn click
-  todoSubmit(form:any){
-    let value = form.value;
-    if(value!==""){
-      this.todoArray.push(value.todo);  
-      form.resetForm();   
-    }else{
-      alert('Field required **')
-    }    
-  }
-
-  deleteItem(todo){
-    this.todoArray.forEach( (item, i) => {
-      if(item === todo){
-       this.todoArray.splice(i,1)
-      }
-    })
-  }
-
-  constructor() { }
+  constructor(private todosApiService: TodosApiService) { }
 
   ngOnInit() {
+    this.reloadData();
   }
-
+ 
+  deleteAllTodos() {
+    this.todosApiService.deleteAll()
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log('ERROR: ' + error));
+  }
+ 
+  // list todos
+  reloadData() {    
+    this.todos = this.todosApiService.getTodosList();    
+  }
 }
