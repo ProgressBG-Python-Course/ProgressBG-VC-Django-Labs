@@ -27,9 +27,29 @@ export class TodoApiComponent implements OnInit {
         },
         error => console.log('ERROR: ' + error));
   }
+
+  deleteItem(todo) {    
+    this.todosApiService.deleteTodo(todo.id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log('ERROR: ' + error));
+  }
+
+  addItem(title) {    
+    this.todosApiService.createTodo(title)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log('ERROR: ' + error));
+  }
  
   // list todos
   reloadData() {    
-    this.todos = this.todosApiService.getTodosList();    
+    this.todos = this.todosApiService.getTodosList();        
   }
 }
