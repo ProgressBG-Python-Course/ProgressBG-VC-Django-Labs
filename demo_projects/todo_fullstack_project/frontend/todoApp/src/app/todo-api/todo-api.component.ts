@@ -17,7 +17,7 @@ export class TodoApiComponent implements OnInit {
   ngOnInit() {
     this.reloadData();
   }
- 
+
   deleteAllTodos() {
     this.todosApiService.deleteAll()
       .subscribe(
@@ -28,7 +28,7 @@ export class TodoApiComponent implements OnInit {
         error => console.log('ERROR: ' + error));
   }
 
-  deleteItem(todo) {    
+  deleteItem(todo) {
     this.todosApiService.deleteTodo(todo.id)
       .subscribe(
         data => {
@@ -38,7 +38,7 @@ export class TodoApiComponent implements OnInit {
         error => console.log('ERROR: ' + error));
   }
 
-  addItem(title) {    
+  addItem(title) {
     this.todosApiService.createTodo(title)
       .subscribe(
         data => {
@@ -47,9 +47,9 @@ export class TodoApiComponent implements OnInit {
         },
         error => console.log('ERROR: ' + error));
   }
- 
+
   // list todos
-  reloadData() {    
-    this.todos = this.todosApiService.getTodosList();        
+  reloadData() {
+    this.todos = this.todosApiService.getAllTodos();
   }
 }

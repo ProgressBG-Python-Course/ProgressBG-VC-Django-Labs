@@ -112,14 +112,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #  Only enable CORS for specified domains:
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ORIGIN_WHITELIST = (
 #     'http://localhost:8000',
 #     'http://127.0.0.1:8000',    
 # )
-CORS_ORIGIN_REGEX_WHITELIST = (
-    r"^https?:\/\/(localhost|127\.0\.0\.1)",
-)
+# CORS_ORIGIN_REGEX_WHITELIST = (
+#     r"^https?:\/\/(localhost|127\.0\.0\.1)",
+# )
 
 # import secret settings
 from .__secrets import *
