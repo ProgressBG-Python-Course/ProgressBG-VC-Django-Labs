@@ -29,7 +29,7 @@ export class TodosApiService {
   }
 
   // API: POST http://127.0.0.1:8000/api/tasks/
-  createTodo(todo: Todo): Observable<any> {
+   createTodo(todo: Todo): Observable<any> {
     console.dir(todo);
 
     return this.http
@@ -40,25 +40,16 @@ export class TodosApiService {
     }))
   }
 
-  // getTodo(id: number): Observable<object> {
-  //   return this.http.get(`${this.baseUrl}/${id}`);
-  // }
+  deleteAllTodos(): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/tasks/`);
+  }
 
-  // updateTodo(id: number, value: any): Observable<object> {
-  //   return this.http.put(`${this.baseUrl}/${id}`, value);
-  // }
 
+  // API: DELETE http://127.0.0.1:8000/api/task/<id>
   deleteTodo(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/task/${id}/`);
   }
 
-  // getTodosByCompleted(age: number): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/age/${age}/`);
-  // }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/`);
-  }
 
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);

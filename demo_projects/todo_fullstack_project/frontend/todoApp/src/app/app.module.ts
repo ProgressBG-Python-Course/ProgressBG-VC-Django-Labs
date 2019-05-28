@@ -4,13 +4,11 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TodosComponent } from './todos/todos.component';
 import { TodoApiComponent } from './todo-api/todo-api.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent,
     TodoApiComponent
   ],
   imports: [

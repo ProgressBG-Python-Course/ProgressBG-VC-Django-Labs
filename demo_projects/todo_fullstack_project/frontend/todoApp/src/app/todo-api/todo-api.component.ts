@@ -18,8 +18,19 @@ export class TodoApiComponent implements OnInit {
     this.reloadData();
   }
 
+  // to submit item with enter, not only  with add btn click
+  todoSubmit(form:any){
+    let value = form.value;
+    if(value!==""){
+      this.createTodo(value)
+      form.resetForm();
+    }else{
+      alert('Field required **')
+    }
+  }
+
   deleteAllTodos() {
-    this.todosApiService.deleteAll()
+    this.todosApiService.deleteAllTodos()
       .subscribe(
         data => {
           console.log(data);
@@ -28,7 +39,7 @@ export class TodoApiComponent implements OnInit {
         error => console.log('ERROR: ' + error));
   }
 
-  deleteItem(todo) {
+  deleteTodo(todo) {
     this.todosApiService.deleteTodo(todo.id)
       .subscribe(
         data => {
@@ -38,14 +49,13 @@ export class TodoApiComponent implements OnInit {
         error => console.log('ERROR: ' + error));
   }
 
-  addItem(title) {
-    this.todosApiService.createTodo(title)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log('ERROR: ' + error));
+  createTodo(title) {
+    console.warn('Will be implemented in labs')
+  }
+
+  updateTodo(todo){
+    console.warn('Will be implemented in labs');
+
   }
 
   // list todos
