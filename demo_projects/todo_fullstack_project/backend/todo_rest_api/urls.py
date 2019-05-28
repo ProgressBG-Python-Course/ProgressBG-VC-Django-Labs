@@ -1,7 +1,7 @@
-from django.conf.urls import url 
+from django.urls import path, re_path
 from . import views 
  
-urlpatterns = [ 
-    url('tasks', views.task_list),
-    url('task/<int:id>', views.task_detail),
+urlpatterns = [  
+  path('tasks/', views.task_list),
+  path('task/<int:id>/', views.task_details),
 ]

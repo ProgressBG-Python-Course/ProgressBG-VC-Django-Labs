@@ -4,5 +4,9 @@ export class Todo {
     description: string;
     image: string;
     due: Date;
-    completed: boolean;
+    completed: boolean = false;
+
+    constructor(values: Object = {}) {
+      Object.assign(this, values);
+    }
 }
