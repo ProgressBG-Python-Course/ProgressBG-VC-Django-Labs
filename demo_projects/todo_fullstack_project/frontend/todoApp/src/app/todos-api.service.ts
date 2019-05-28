@@ -20,8 +20,6 @@ export class TodosApiService {
       .get(this.baseUrl + '/tasks/').pipe(
         map(response => {
           const todos = response;
-          // console.dir(todos);
-          // return todos.map((todo) => new Todo(todo));
           return todos;
         }),
         catchError(this.handleError),
