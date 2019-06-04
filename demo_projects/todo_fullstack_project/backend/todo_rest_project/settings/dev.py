@@ -3,6 +3,8 @@ from .default import *
 
 DEBUG = True
 
+ALLOWED_HOSTS = ['192.168.100.2']
+
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.mysql',
